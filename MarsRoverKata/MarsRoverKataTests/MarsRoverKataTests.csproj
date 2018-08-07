@@ -54,7 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MarsRoverKata\MarsRoverKataApi\MarsRoverKataApi.csproj">
+    <ProjectReference Include="..\MarsRoverKataApi\MarsRoverKataApi.csproj">
       <Project>{8a3a91ed-120f-42eb-8385-6c2b21d964fb}</Project>
       <Name>MarsRoverKataApi</Name>
     </ProjectReference>
