@@ -23,7 +23,6 @@ namespace MarsRoverKataTests
             var marsGrid = new MarsGrid(gridDimension, obstacleList);
             var rover = new Rover(marsGrid, new Point(1, 2), Direction.South);
 
-
         }
 
         [TestMethod]
@@ -37,6 +36,20 @@ namespace MarsRoverKataTests
 
             var marsGrid = new MarsGrid(gridDimension, obstacleList);
             var rover = new Rover(marsGrid, new Point(1, 2), Direction.South);
+
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(RoverStartingDirectionInvalidException))]
+        public void Rover_Direction_Is_Invalid()
+        {
+
+            var gridDimension = new Point(1, 1);
+            var obstacleList = new List<Obstacle>();
+            
+            var marsGrid = new MarsGrid(gridDimension, obstacleList);
+            var rover = new Rover(marsGrid, new Point(1, 1), "D");
 
 
         }

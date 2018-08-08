@@ -20,13 +20,39 @@ namespace MarsRoverKataApi
 
 
             _marsGrid = marsGrid;
-            _marsGrid.ValidateRoverStartingPosition(roverStartingPosition);
-
             CurrentRoverDirection = roverDirection;
             CurrentRoverPosition = roverStartingPosition;
-            
-            
+
+            ValidateRoverStartingPosition();
+            ValidateRoverStartingDirection();
+
+
         }
+
+        #region "Validation"
+
+        private void ValidateRoverStartingPosition()
+        {
+            _marsGrid.ValidateRoverStartingPosition(CurrentRoverPosition);
+
+        }
+
+        private void ValidateRoverStartingDirection()
+        {
+
+            if (CurrentRoverDirection != Direction.North && 
+                CurrentRoverDirection != Direction.South &&
+                CurrentRoverDirection != Direction.West &&
+                CurrentRoverDirection != Direction.East)
+
+            {
+
+                throw new Exceptions.RoverStartingDirectionInvalidException(String.Format("Rover starting direction [{0}] is not valid", CurrentRoverDirection));
+            }
+
+        }
+
+        #endregion
 
         #region "Commands"
 

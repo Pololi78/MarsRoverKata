@@ -43,6 +43,7 @@
     <Compile Include="Exceptions\GridDimensionInvalidException.cs" />
     <Compile Include="Exceptions\ObstaclePositionInvalidException.cs" />
     <Compile Include="Exceptions\RoverCommandInvalidException.cs" />
+    <Compile Include="Exceptions\RoverStartingDirectionInvalidException.cs" />
     <Compile Include="Exceptions\RoverStartingPositionInvalidException.cs" />
     <Compile Include="MarsGrid.cs" />
     <Compile Include="Obstacle.cs" />
