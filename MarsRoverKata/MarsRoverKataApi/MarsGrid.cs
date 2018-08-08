@@ -12,16 +12,46 @@ namespace MarsRoverKataApi
         private Point _gridDimension;
         private List<Obstacle> _obstacleList;
 
-        public MarsGrid(Point gridDimension,
-                        List<Obstacle> obstacleList
-                        )
+        public MarsGrid(Point gridDimension, List<Obstacle> obstacleList)
         {
 
+
+            ValidateGridDimensions(gridDimension);
+            ValidateObstaclesPosition(gridDimension, obstacleList);
+            
             _gridDimension = gridDimension;
             _obstacleList = obstacleList;
             
 
         }
+
+        #region "Validation"
+
+        private void ValidateGridDimensions(Point gridDimension)
+        {
+
+            if (gridDimension.X < 1 || gridDimension.Y < 1)
+            {
+                throw new Exceptions.GridDimensionInvalidException("Grid dimensions x and y must be greater than zero");
+            }
+        }
+
+        private void ValidateObstaclesPosition(Point gridDimension, List<Obstacle> obstacleList)
+        {
+
+            foreach(var obstacle in obstacleList)
+            {
+
+                if (obstacle.Position.X > gridDimension.X || obstacle.Position.Y > gridDimension.Y)
+                {
+                    throw new Exceptions.ObstaclePositionInvalidException(String.Format("Obstacle with coordinates [{0},{1}] is outside the grid [{2},{3}]",obstacle.Position.X, obstacle.Position.Y, gridDimension.X, gridDimension.Y));
+                }
+
+            }
+
+        }
+
+        #endregion
 
         #region "Commands"
 

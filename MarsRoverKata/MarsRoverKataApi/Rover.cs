@@ -54,7 +54,7 @@ namespace MarsRoverKataApi
                         break;
 
                     default:
-                        throw new Exception(String.Format("[{0}] is not a valid command", roverCommand));
+                        throw new Exceptions.RoverCommandInvalidException (String.Format("[{0}] is not a valid command", roverCommand));
 
 
                 }
