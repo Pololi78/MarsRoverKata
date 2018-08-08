@@ -16,39 +16,67 @@ namespace MarsRoverKataApi
         {
 
 
-            ValidateGridDimensions(gridDimension);
-            ValidateObstaclesPosition(gridDimension, obstacleList);
-            
             _gridDimension = gridDimension;
             _obstacleList = obstacleList;
-            
+
+            ValidateGridDimensions();
+            ValidateObstaclesPosition();
+              
 
         }
 
         #region "Validation"
 
-        private void ValidateGridDimensions(Point gridDimension)
+        private void ValidateGridDimensions()
         {
 
-            if (gridDimension.X < 1 || gridDimension.Y < 1)
+            if (_gridDimension.X < 1 || _gridDimension.Y < 1)
             {
                 throw new Exceptions.GridDimensionInvalidException("Grid dimensions x and y must be greater than zero");
             }
         }
 
-        private void ValidateObstaclesPosition(Point gridDimension, List<Obstacle> obstacleList)
+        private void ValidateObstaclesPosition()
         {
 
-            foreach(var obstacle in obstacleList)
+
+            foreach(var obstacle in _obstacleList)
             {
 
-                if (obstacle.Position.X > gridDimension.X || obstacle.Position.Y > gridDimension.Y)
+                if (obstacle.Position.X > _gridDimension.X || obstacle.Position.Y > _gridDimension.Y)
                 {
-                    throw new Exceptions.ObstaclePositionInvalidException(String.Format("Obstacle with coordinates [{0},{1}] is outside the grid [{2},{3}]",obstacle.Position.X, obstacle.Position.Y, gridDimension.X, gridDimension.Y));
+                    throw new Exceptions.ObstaclePositionInvalidException(String.Format("Obstacle with coordinates [{0},{1}] is outside the grid [{2},{3}]",obstacle.Position.X, obstacle.Position.Y, _gridDimension.X, _gridDimension.Y));
                 }
 
             }
 
+        }
+
+        internal void ValidateRoverStartingPosition(Point roverStartingPosition)
+        {
+
+            CheckRoverIsNotOutsideGrid(roverStartingPosition);
+            CheckRoverIsNotOnObstacle(roverStartingPosition);
+
+
+        }
+
+        private void CheckRoverIsNotOutsideGrid(Point roverStartingPosition)
+        {
+            if (roverStartingPosition.X > _gridDimension.X || roverStartingPosition.Y > _gridDimension.Y)
+            {
+                throw new Exceptions.RoverStartingPositionInvalidException(String.Format("Rover starting position [{0},{1}] is outside the grid [{2},{3}]", roverStartingPosition.X, roverStartingPosition.Y, _gridDimension.X, _gridDimension.Y));
+            }
+        }
+
+        private void CheckRoverIsNotOnObstacle(Point roverStartingPosition)
+        {
+
+            if (CheckObstacle(roverStartingPosition))
+            {
+                throw new Exceptions.RoverStartingPositionInvalidException(String.Format("Rover starting position [{0},{1}] corresponds to an obstacle position", roverStartingPosition.X, roverStartingPosition.Y));
+            }
+            
         }
 
         #endregion

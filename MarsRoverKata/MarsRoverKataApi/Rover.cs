@@ -14,18 +14,21 @@ namespace MarsRoverKataApi
         public String CurrentRoverDirection { get; internal set; }
         
         public Rover(MarsGrid marsGrid,
-                     Point roverStartingPoint, 
+                     Point roverStartingPosition, 
                      String roverDirection)
         {
 
+
             _marsGrid = marsGrid;
+            _marsGrid.ValidateRoverStartingPosition(roverStartingPosition);
+
             CurrentRoverDirection = roverDirection;
-            CurrentRoverPosition = roverStartingPoint;
+            CurrentRoverPosition = roverStartingPosition;
             
             
         }
 
-    #region "Commands"
+        #region "Commands"
 
         public void MoveAndTurn(String roverCommands)
         {

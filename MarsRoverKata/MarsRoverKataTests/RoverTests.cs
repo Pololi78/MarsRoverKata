@@ -14,13 +14,29 @@ namespace MarsRoverKataTests
 
         [TestMethod]
         [ExpectedException(typeof(RoverStartingPositionInvalidException ))]
-        public void Rover_Starting_Position_Is_Invalid()
+        public void Rover_Starting_Position_Is_Invalid_Because_It_Is_Outside_The_Grid()
         {
 
             var gridDimension = new Point(1, 1);
             var obstacleList = new List<Obstacle>();
 
             var marsGrid = new MarsGrid(gridDimension, obstacleList);
+            var rover = new Rover(marsGrid, new Point(1, 2), Direction.South);
+
+
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(RoverStartingPositionInvalidException))]
+        public void Rover_Starting_Position_Is_Invalid_Because_It_Is_On_An_Obstacle()
+        {
+
+            var gridDimension = new Point(3, 3);
+            var obstacleList = new List<Obstacle>();
+            obstacleList.Add(new Obstacle(new Point(1, 2)));
+
+            var marsGrid = new MarsGrid(gridDimension, obstacleList);
+            var rover = new Rover(marsGrid, new Point(1, 2), Direction.South);
 
 
         }
