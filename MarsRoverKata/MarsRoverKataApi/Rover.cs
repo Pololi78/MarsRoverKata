@@ -27,7 +27,7 @@ namespace MarsRoverKataApi
 
     #region "Commands"
 
-        public void ExecuteRoverCommandList(String roverCommands)
+        public void MoveAndTurn(String roverCommands)
         {
 
             var roverCommandList = roverCommands.ToCharArray();
@@ -52,6 +52,10 @@ namespace MarsRoverKataApi
                     case RoverCommand.TurnLeft:
                         CurrentRoverDirection = _marsGrid.TurnRoverLeft(CurrentRoverDirection);
                         break;
+
+                    default:
+                        throw new Exception(String.Format("[{0}] is not a valid command", roverCommand));
+
 
                 }
 
