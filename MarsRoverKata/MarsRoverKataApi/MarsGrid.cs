@@ -12,6 +12,15 @@ namespace MarsRoverKataApi
         private Point _gridDimension;
         private List<Obstacle> _obstacleList;
 
+        /// <summary>
+        /// Create a mars grid
+        /// </summary>
+        /// <param name="gridDimension">Maximum x and y coordinates for the grid</param>
+        /// <param name="obstacleList">A list of obstacles. Provide it empty is no obstacles</param>
+        /// <remarks>
+        /// A grid dimension is not valid if x or y are minus than zero.
+        /// Obstacles must be inside the grid otherwise an exception will be thrown.
+        /// </remarks>
         public MarsGrid(Point gridDimension, List<Obstacle> obstacleList)
         {
 

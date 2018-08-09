@@ -13,6 +13,13 @@ namespace MarsRoverKataApi
         public Point CurrentRoverPosition { get; internal set; }
         public String CurrentRoverDirection { get; internal set; }
         
+        /// <summary>
+        /// Create a rover
+        /// </summary>
+        /// <param name="marsGrid">The grid of the planet Mars where the rover will move</param>
+        /// <param name="roverStartingPosition">The starting position of the rover</param>
+        /// <param name="roverDirection">The starting direction of the rover. N north, S south, E east, W west</param>
+        /// <remarks>Provide a rover starting position inside the grid and a valid rover direction</remarks>
         public Rover(MarsGrid marsGrid,
                      Point roverStartingPosition, 
                      String roverDirection)
@@ -20,7 +27,7 @@ namespace MarsRoverKataApi
 
 
             _marsGrid = marsGrid;
-            CurrentRoverDirection = roverDirection;
+            CurrentRoverDirection = roverDirection.ToUpper();
             CurrentRoverPosition = roverStartingPosition;
 
             ValidateRoverStartingPosition();
@@ -55,11 +62,15 @@ namespace MarsRoverKataApi
         #endregion
 
         #region "Commands"
-
+        /// <summary>
+        /// Move and turn the rover by sending a list of commands.
+        /// </summary>
+        /// <param name="roverCommands">A list of commands in the form of a string (for example "FFFBM"). Valid commands are M move forward, B move backward, L turn left, R turn right</param>
+        /// <remarks>Unknown commands are ignored</remarks>
         public void MoveAndTurn(String roverCommands)
         {
 
-            var roverCommandList = roverCommands.ToCharArray();
+            var roverCommandList = roverCommands.ToUpper().ToCharArray();
 
             foreach (var roverCommand in roverCommandList)
             {
@@ -81,11 +92,8 @@ namespace MarsRoverKataApi
                     case RoverCommand.TurnLeft:
                         CurrentRoverDirection = _marsGrid.TurnRoverLeft(CurrentRoverDirection);
                         break;
-
-                    default:
-                        throw new Exceptions.RoverCommandInvalidException (String.Format("[{0}] is not a valid command", roverCommand));
-
-
+                                           
+                        
                 }
 
             }
