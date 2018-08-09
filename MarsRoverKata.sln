@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverKataApi", "MarsRov
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverKataTests", "MarsRoverKata\MarsRoverKataTests\MarsRoverKataTests.csproj", "{0051BF7B-CE27-4515-96B7-A0101A8630EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarsRoverKataWinForm", "MarsRoverKata\MarsRoverKataWinForm\MarsRoverKataWinForm.csproj", "{7E9331F8-DE22-44E8-9793-E1344E09924F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{0051BF7B-CE27-4515-96B7-A0101A8630EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0051BF7B-CE27-4515-96B7-A0101A8630EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0051BF7B-CE27-4515-96B7-A0101A8630EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E9331F8-DE22-44E8-9793-E1344E09924F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E9331F8-DE22-44E8-9793-E1344E09924F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E9331F8-DE22-44E8-9793-E1344E09924F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E9331F8-DE22-44E8-9793-E1344E09924F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
