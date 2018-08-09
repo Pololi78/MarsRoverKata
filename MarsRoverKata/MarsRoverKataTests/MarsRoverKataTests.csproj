@@ -55,6 +55,7 @@
     <Compile Include="RoverTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MarsGridTests.cs" />
+    <Compile Include="RoverPathsTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MarsRoverKataApi\MarsRoverKataApi.csproj">
