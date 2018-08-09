@@ -53,12 +53,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSendCommands = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.txtRoverStatus = new System.Windows.Forms.TextBox();
             this.txtCommands = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.txtRoverStatus = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numRoverY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRoverX)).BeginInit();
@@ -67,8 +67,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMarsGridY)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numMarsGridX)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -99,7 +99,7 @@
             this.groupBox1.ForeColor = System.Drawing.Color.Black;
             this.groupBox1.Location = new System.Drawing.Point(12, 105);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(495, 284);
+            this.groupBox1.Size = new System.Drawing.Size(470, 284);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Define Mars and rover";
@@ -125,7 +125,7 @@
             this.btnSetupMarsAndRover.ForeColor = System.Drawing.Color.Black;
             this.btnSetupMarsAndRover.Location = new System.Drawing.Point(23, 246);
             this.btnSetupMarsAndRover.Name = "btnSetupMarsAndRover";
-            this.btnSetupMarsAndRover.Size = new System.Drawing.Size(149, 23);
+            this.btnSetupMarsAndRover.Size = new System.Drawing.Size(417, 23);
             this.btnSetupMarsAndRover.TabIndex = 19;
             this.btnSetupMarsAndRover.Text = "Setup Mars and rover";
             this.btnSetupMarsAndRover.UseVisualStyleBackColor = true;
@@ -370,75 +370,29 @@
             this.groupBox2.Controls.Add(this.pictureBox2);
             this.groupBox2.Controls.Add(this.txtRoverStatus);
             this.groupBox2.Controls.Add(this.txtCommands);
-            this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.ForeColor = System.Drawing.Color.Black;
             this.groupBox2.Location = new System.Drawing.Point(13, 410);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(494, 178);
+            this.groupBox2.Size = new System.Drawing.Size(469, 178);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Move and turn the rover";
             // 
             // btnSendCommands
             // 
+            this.btnSendCommands.Enabled = false;
             this.btnSendCommands.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSendCommands.ForeColor = System.Drawing.Color.Black;
-            this.btnSendCommands.Location = new System.Drawing.Point(179, 134);
+            this.btnSendCommands.Location = new System.Drawing.Point(258, 101);
             this.btnSendCommands.Name = "btnSendCommands";
-            this.btnSendCommands.Size = new System.Drawing.Size(149, 23);
+            this.btnSendCommands.Size = new System.Drawing.Size(192, 23);
             this.btnSendCommands.TabIndex = 20;
             this.btnSendCommands.Text = "Send commands to rover";
             this.btnSendCommands.UseVisualStyleBackColor = true;
             this.btnSendCommands.Click += new System.EventHandler(this.btnSendCommands_Click);
-            // 
-            // label12
-            // 
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(178, 68);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(62, 23);
-            this.label12.TabIndex = 19;
-            this.label12.Text = "Commands:";
-            // 
-            // txtCommands
-            // 
-            this.txtCommands.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCommands.Location = new System.Drawing.Point(258, 65);
-            this.txtCommands.Multiline = true;
-            this.txtCommands.Name = "txtCommands";
-            this.txtCommands.Size = new System.Drawing.Size(192, 63);
-            this.txtCommands.TabIndex = 18;
-            // 
-            // label11
-            // 
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(177, 35);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(75, 23);
-            this.label11.TabIndex = 17;
-            this.label11.Text = "Rover status:";
-            // 
-            // txtRoverStatus
-            // 
-            this.txtRoverStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRoverStatus.Location = new System.Drawing.Point(258, 32);
-            this.txtRoverStatus.Multiline = true;
-            this.txtRoverStatus.Name = "txtRoverStatus";
-            this.txtRoverStatus.ReadOnly = true;
-            this.txtRoverStatus.Size = new System.Drawing.Size(192, 23);
-            this.txtRoverStatus.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(13, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(494, 68);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 21;
-            this.pictureBox1.TabStop = false;
             // 
             // pictureBox2
             // 
@@ -450,12 +404,59 @@
             this.pictureBox2.TabIndex = 22;
             this.pictureBox2.TabStop = false;
             // 
+            // txtRoverStatus
+            // 
+            this.txtRoverStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRoverStatus.Location = new System.Drawing.Point(258, 134);
+            this.txtRoverStatus.Multiline = true;
+            this.txtRoverStatus.Name = "txtRoverStatus";
+            this.txtRoverStatus.ReadOnly = true;
+            this.txtRoverStatus.Size = new System.Drawing.Size(192, 23);
+            this.txtRoverStatus.TabIndex = 0;
+            // 
+            // txtCommands
+            // 
+            this.txtCommands.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCommands.Location = new System.Drawing.Point(258, 32);
+            this.txtCommands.Multiline = true;
+            this.txtCommands.Name = "txtCommands";
+            this.txtCommands.Size = new System.Drawing.Size(192, 63);
+            this.txtCommands.TabIndex = 18;
+            // 
+            // label11
+            // 
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(176, 137);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(75, 23);
+            this.label11.TabIndex = 17;
+            this.label11.Text = "Rover status:";
+            // 
+            // label12
+            // 
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(178, 35);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(62, 60);
+            this.label12.TabIndex = 19;
+            this.label12.Text = "Commands:\r\n(F,B,L,R)";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(13, 13);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(469, 68);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(522, 603);
+            this.ClientSize = new System.Drawing.Size(495, 603);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -475,8 +476,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numMarsGridX)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

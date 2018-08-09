@@ -1,4 +1,5 @@
 ﻿using MarsRoverKataApi;
+using MarsRoverKataApi.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,24 +21,75 @@ namespace MarsRoverKataWinForm
         public FrmMain()
         {
             InitializeComponent();
+            cboRoverDirection.SelectedIndex = 0;
         }
+
+        #region "UI events"
 
         private void btnSetupMarsAndRover_Click(object sender, EventArgs e)
         {
+
+
+            MarsGrid marsGrid = null;
+
+            btnSendCommands.Enabled = false;
+
+            //Setup Mars grid
 
             var gridX = Convert.ToInt32(numMarsGridX.Value);
             var gridY = Convert.ToInt32(numMarsGridY.Value);
             
             var gridDimension = new MarsRoverKataApi.Point(gridX, gridY);
-            var marsGrid = new MarsGrid(gridDimension, _obstacleList);
-      
+
+            try
+            {
+                marsGrid = new MarsGrid(gridDimension, _obstacleList);
+
+            }
+            catch (Exception ex)
+            {
+
+                if (ex is GridDimensionInvalidException || ex is ObstaclePositionInvalidException)
+                {
+
+                    MessageBox.Show(ex.Message, "Mars grid", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                throw;
+            }
+                
+            //Setup rover
+
             var roverX = Convert.ToInt32(numRoverX.Value);
             var roverY = Convert.ToInt32(numRoverY.Value);
             
             var roverStartingPosition = new MarsRoverKataApi.Point(roverX, roverY);
-            _rover = new Rover(marsGrid, roverStartingPosition, cboRoverDirection.Text);
 
+
+            try
+            {
+                _rover = new Rover(marsGrid, roverStartingPosition, cboRoverDirection.Text);
+            }
+            catch (Exception ex)
+            {
+
+                if (ex is RoverStartingDirectionInvalidException || ex is RoverStartingPositionInvalidException)
+                {
+
+                    MessageBox.Show(ex.Message, "Rover", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                throw;
+
+            }
+
+
+            btnSendCommands.Enabled = true;
             txtRoverStatus.Text = roverX + "," + roverY + " " + cboRoverDirection.Text;
+
+            MessageBox.Show("Mars grid and rover correctly setup", "Setup", MessageBoxButtons.OK, MessageBoxIcon.Information);
             
         }
 
@@ -74,17 +126,22 @@ namespace MarsRoverKataWinForm
             if (roverInfo.RoverHasBeenBlockedByObstacle)
             {
 
-                MessageBox.Show("Rover has moved but found an obstacle!", "Rover", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                var msg = "Rover has executed the commands but it found an obstacle!" + System.Environment.NewLine + System.Environment.NewLine + "Check the new status";
+                MessageBox.Show(msg, "Rover", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
             }
             else
             {
-                MessageBox.Show("Rover has moved!", "Rover", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                var msg = "Rover has executed the commands!" + System.Environment.NewLine + System.Environment.NewLine+ "Check the new status";
+                MessageBox.Show(msg, "Rover", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             txtRoverStatus.Text = roverInfo.RoverPosition.X + "," + roverInfo.RoverPosition.Y + " " + roverInfo.RoverDirection;
             txtCommands.Text = String.Empty;
 
         }
-    }
+
+        #endregion
+
+     }
 }
