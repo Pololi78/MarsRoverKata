@@ -54,26 +54,27 @@ namespace MarsRoverKataTests
 
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(RoverCommandInvalidException))]
-        public void Rover_Command_Is_Invalid()
-        {
+        #endregion
 
-            var gridDimension = new Point(1, 1);
+        #region "Behaviors"
+
+        [TestMethod]
+        public void Rover_Receives_No_Commands()
+        {
+            var gridDimension = new Point(2, 2);
             var obstacleList = new List<Obstacle>();
 
             var marsGrid = new MarsGrid(gridDimension, obstacleList);
 
-            var rover = new Rover(marsGrid, new Point(1, 1), Direction.North);
+            var rover = new Rover(marsGrid, new Point(2, 2), Direction.North);
 
-            rover.MoveAndTurn("Z");
+            var roverInfo = rover.MoveAndTurn("");
 
+            Assert.IsTrue(roverInfo.RoverDirection == Direction.North &&
+                          roverInfo.RoverPosition.X == 2 &&
+                          roverInfo.RoverPosition.Y == 2);
 
         }
-
-        #endregion
-
-        #region "Behaviors"
 
         [TestMethod]
         public void Rover_Reaches_Correct_Position_1()
@@ -86,11 +87,11 @@ namespace MarsRoverKataTests
 
             var rover = new Rover(marsGrid, new Point(1, 1), Direction.North);
 
-            rover.MoveAndTurn("FF");
+            var roverInfo = rover.MoveAndTurn("FF");
 
-            Assert.IsTrue(rover.CurrentRoverDirection == Direction.North && 
-                          rover.CurrentRoverPosition.X == 1 && 
-                          rover.CurrentRoverPosition.Y == 1);
+            Assert.IsTrue(roverInfo.RoverDirection == Direction.North &&
+                          roverInfo.RoverPosition.X == 1 &&
+                          roverInfo.RoverPosition.Y == 1);
         }
 
         [TestMethod]
@@ -104,11 +105,11 @@ namespace MarsRoverKataTests
 
             var rover = new Rover(marsGrid, new Point(1, 2), Direction.North);
 
-            rover.MoveAndTurn("LFLFLFLFF");
+            var roverInfo = rover.MoveAndTurn("LFLFLFLFF");
 
-            Assert.IsTrue(rover.CurrentRoverDirection == Direction.North &&
-                          rover.CurrentRoverPosition.X == 1 &&
-                          rover.CurrentRoverPosition.Y == 3);
+            Assert.IsTrue(roverInfo.RoverDirection == Direction.North &&
+                          roverInfo.RoverPosition.X == 1 &&
+                          roverInfo.RoverPosition.Y == 3);
         }
 
         [TestMethod]
@@ -122,11 +123,11 @@ namespace MarsRoverKataTests
 
             var rover = new Rover(marsGrid, new Point(3, 3), Direction.East);
 
-            rover.MoveAndTurn("FFRFFRFRRF");
+            var roverInfo = rover.MoveAndTurn("FFRFFRFRRF");
 
-            Assert.IsTrue(rover.CurrentRoverDirection == Direction.East &&
-                          rover.CurrentRoverPosition.X == 5 &&
-                          rover.CurrentRoverPosition.Y == 1);
+            Assert.IsTrue(roverInfo.RoverDirection == Direction.East &&
+                          roverInfo.RoverPosition.X == 5 &&
+                          roverInfo.RoverPosition.Y == 1);
         }
 
         #endregion

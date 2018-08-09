@@ -92,7 +92,7 @@ namespace MarsRoverKataApi
 
         #region "Commands"
 
-        internal Point MoveRover(Char whichWay, String roverDirection, Point roverPosition)
+        internal MoveRoverResponse MoveRover(Char whichWay, String roverDirection, Point roverPosition)
         {
             Int32 whichWayFactor = 1;
 
@@ -120,8 +120,10 @@ namespace MarsRoverKataApi
 
             roverPosition = ApplyWrapping(roverPosition);
             var obstacleFound = CheckObstacle(roverPosition);
-                        
-            return roverPosition;
+
+            var roverInfo = new MoveRoverResponse () { RoverPosition = roverPosition, RoverHasBeenBlockedByObstacle = obstacleFound };
+                     
+            return roverInfo;
 
         }
 
@@ -209,8 +211,20 @@ namespace MarsRoverKataApi
 
         }
 
-        
 
+
+        #endregion
+
+        #region "Structured responses"
+
+        internal class MoveRoverResponse
+        {
+
+            public Point RoverPosition { get; internal set; }
+            public Boolean RoverHasBeenBlockedByObstacle { get; internal set; }
+
+        }
+        
         #endregion
 
     }

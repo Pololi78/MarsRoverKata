@@ -10,8 +10,8 @@ namespace MarsRoverKataApi
     {
 
         private MarsGrid _marsGrid;
-        public Point CurrentRoverPosition { get; internal set; }
-        public String CurrentRoverDirection { get; internal set; }
+        private Point _currentRoverPosition;
+        private String _currentRoverDirection;
         
         /// <summary>
         /// Create a rover
@@ -27,8 +27,8 @@ namespace MarsRoverKataApi
 
 
             _marsGrid = marsGrid;
-            CurrentRoverDirection = roverDirection.ToUpper();
-            CurrentRoverPosition = roverStartingPosition;
+            _currentRoverDirection = roverDirection.ToUpper();
+            _currentRoverPosition = roverStartingPosition;
 
             ValidateRoverStartingPosition();
             ValidateRoverStartingDirection();
@@ -40,21 +40,21 @@ namespace MarsRoverKataApi
 
         private void ValidateRoverStartingPosition()
         {
-            _marsGrid.ValidateRoverStartingPosition(CurrentRoverPosition);
+            _marsGrid.ValidateRoverStartingPosition(_currentRoverPosition);
 
         }
 
         private void ValidateRoverStartingDirection()
         {
 
-            if (CurrentRoverDirection != Direction.North && 
-                CurrentRoverDirection != Direction.South &&
-                CurrentRoverDirection != Direction.West &&
-                CurrentRoverDirection != Direction.East)
+            if (_currentRoverDirection != Direction.North &&
+                _currentRoverDirection != Direction.South &&
+                _currentRoverDirection != Direction.West &&
+                _currentRoverDirection != Direction.East)
 
             {
 
-                throw new Exceptions.RoverStartingDirectionInvalidException(String.Format("Rover starting direction [{0}] is not valid", CurrentRoverDirection));
+                throw new Exceptions.RoverStartingDirectionInvalidException(String.Format("Rover starting direction [{0}] is not valid", _currentRoverDirection));
             }
 
         }
@@ -66,44 +66,73 @@ namespace MarsRoverKataApi
         /// Move and turn the rover by sending a list of commands.
         /// </summary>
         /// <param name="roverCommands">A list of commands in the form of a string (for example "FFFBM"). Valid commands are M move forward, B move backward, L turn left, R turn right</param>
+        /// <returns>Rover info as the position, the direction and if an obstacle was found</returns>
         /// <remarks>Unknown commands are ignored</remarks>
-        public void MoveAndTurn(String roverCommands)
+        public RoverInfo MoveAndTurn(String roverCommands)
         {
 
-            var roverCommandList = roverCommands.ToUpper().ToCharArray();
+            Int32 cont = 0;
+            Char roverCommand;
+            Boolean obstacleFound = false;
+            MarsGrid.MoveRoverResponse response;
 
-            foreach (var roverCommand in roverCommandList)
-            {
-                switch (roverCommand)
+            var roverCommandList = roverCommands.ToUpper().ToCharArray();
+                      
+            if (roverCommandList.Count() > 0)
+                do
                 {
 
-                    case RoverCommand.MoveForward:
-                        CurrentRoverPosition = _marsGrid.MoveRover(roverCommand, CurrentRoverDirection, CurrentRoverPosition);
-                        break;
+                    roverCommand = roverCommandList[cont];
 
-                    case RoverCommand.MoveBackward:
-                        CurrentRoverPosition = _marsGrid.MoveRover(roverCommand, CurrentRoverDirection, CurrentRoverPosition);
-                        break;
+                    switch (roverCommand)
+                    {
 
-                    case RoverCommand.TurnRight:
-                        CurrentRoverDirection = _marsGrid.TurnRoverRight(CurrentRoverDirection);
-                        break;
+                        case RoverCommand.MoveForward:
+                            response = _marsGrid.MoveRover(roverCommand, _currentRoverDirection, _currentRoverPosition);
+                            _currentRoverPosition = response.RoverPosition;
+                            obstacleFound = response.RoverHasBeenBlockedByObstacle;
+                            break;
 
-                    case RoverCommand.TurnLeft:
-                        CurrentRoverDirection = _marsGrid.TurnRoverLeft(CurrentRoverDirection);
-                        break;
-                                           
-                        
-                }
+                        case RoverCommand.MoveBackward:
+                            response = _marsGrid.MoveRover(roverCommand, _currentRoverDirection, _currentRoverPosition);
+                            _currentRoverPosition = response.RoverPosition;
+                            obstacleFound = response.RoverHasBeenBlockedByObstacle;
+                            break;
 
-            }
+                        case RoverCommand.TurnRight:
+                            _currentRoverDirection = _marsGrid.TurnRoverRight(_currentRoverDirection);
+                            break;
 
+                        case RoverCommand.TurnLeft:
+                            _currentRoverDirection = _marsGrid.TurnRoverLeft(_currentRoverDirection);
+                            break;
+                            
+                    }
+
+                    cont++;
+                    
+                } while (cont < roverCommandList.Count() && obstacleFound == false);
+
+            var roverInfo = new RoverInfo() { RoverPosition = _currentRoverPosition, RoverDirection = _currentRoverDirection, RoverHasBeenBlockedByObstacle = obstacleFound };
+
+            return roverInfo;
         }
 
 
         #endregion
 
-        
+        #region "Structured responses"
+
+        public class RoverInfo
+        {
+
+            public Point RoverPosition { get; internal set; }
+            public String RoverDirection { get; internal set; }
+            public Boolean RoverHasBeenBlockedByObstacle { get; internal set; }
+
+        }
+
+        #endregion
 
 
 
