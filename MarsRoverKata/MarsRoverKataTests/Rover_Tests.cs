@@ -7,7 +7,7 @@ using MarsRoverKataApi.Exceptions;
 namespace MarsRoverKataTests
 {
     [TestClass]
-    public class RoverTests
+    public class Rover_Tests
     {
 
         #region "Exceptions"

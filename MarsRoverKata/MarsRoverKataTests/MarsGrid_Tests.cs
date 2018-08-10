@@ -7,7 +7,7 @@ using MarsRoverKataApi.Exceptions;
 namespace MarsRoverKataTests
 {
     [TestClass]
-    public class MarsGridTests
+    public class MarsGrid_Tests
     {
 
         #region "Exceptions"
