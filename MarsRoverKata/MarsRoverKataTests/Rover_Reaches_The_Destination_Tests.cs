@@ -79,7 +79,7 @@ namespace MarsRoverKataTests
 
             var rover = new Rover(marsGrid, new Point(8, 2), Direction.North);
 
-            var roverInfo = rover.MoveAndTurn("RFFFLFFFRFRFFFFFFFFRFFFFFL");
+            var roverInfo = rover.MoveAndTurn("RFFFLFFFRFRFFFFFFFFRFFFL");
             
             Assert.IsTrue(roverInfo.RoverDirection == Direction.South &&
                           roverInfo.RoverPosition.X == 9 &&

@@ -191,10 +191,10 @@ namespace MarsRoverKataApi
         {
 
             if (roverPosition.X > _gridDimension.X) roverPosition.X = 1;
-            if (roverPosition.X < 0) roverPosition.X = _gridDimension.X;
+            if (roverPosition.X < 1) roverPosition.X = _gridDimension.X;
 
             if (roverPosition.Y > _gridDimension.Y) roverPosition.Y = 1;
-            if (roverPosition.Y < 0) roverPosition.Y = _gridDimension.Y;
+            if (roverPosition.Y < 1) roverPosition.Y = _gridDimension.Y;
             
             return roverPosition;
         }
