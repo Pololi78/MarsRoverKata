@@ -7,7 +7,7 @@ using MarsRoverKataApi.Exceptions;
 namespace MarsRoverKataTests
 {
     [TestClass]
-    public class RoverPathTests
+    public class Rover_Reaches_The_Destination_Tests
     {
 
         

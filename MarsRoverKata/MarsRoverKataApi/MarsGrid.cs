@@ -98,6 +98,8 @@ namespace MarsRoverKataApi
 
             if (whichWay == RoverCommand.MoveBackward) whichWayFactor = -1;
 
+            var originalRoverPosition = new Point(roverPosition.X, roverPosition.Y);
+
             switch (roverDirection)
             {
                 case Direction.North:
@@ -119,7 +121,10 @@ namespace MarsRoverKataApi
             }
 
             roverPosition = ApplyWrapping(roverPosition);
+
             var obstacleFound = CheckObstacle(roverPosition);
+            if (obstacleFound)
+                roverPosition = originalRoverPosition;
 
             var roverInfo = new MoveRoverResponse () { RoverPosition = roverPosition, RoverHasBeenBlockedByObstacle = obstacleFound };
                      

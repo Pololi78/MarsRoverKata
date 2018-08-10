@@ -55,7 +55,7 @@
     <Compile Include="Rover_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MarsGrid_Tests.cs" />
-    <Compile Include="Rover_Finds_An_Obstacle_Tests.cs" />
+    <Compile Include="Rover_Blocked_By_Obstacle_Tests.cs" />
     <Compile Include="Rover_Reaches_The_Destination_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
