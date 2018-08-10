@@ -86,6 +86,27 @@ namespace MarsRoverKataTests
                           roverInfo.RoverPosition.Y == 14);
         }
 
+        [TestMethod]
+        public void Rover_Reaches_The_Destination_5()
+        {
+
+            var gridDimension = new Point(10, 9);
+
+            var obstacleListString = "1,9;4,4;5,5;8,3;7,8";
+            
+            var obstacleList = CreateObstacleList(obstacleListString);
+
+            var marsGrid = new MarsGrid(gridDimension, obstacleList);
+
+            var rover = new Rover(marsGrid, new Point(8, 6), Direction.South);
+
+            var roverInfo = rover.MoveAndTurn("LFRFFFFRFFLBBB");
+
+            Assert.IsTrue(roverInfo.RoverDirection == Direction.South &&
+                          roverInfo.RoverPosition.X == 7 &&
+                          roverInfo.RoverPosition.Y == 5);
+        }
+
         private List<Obstacle> CreateObstacleList(String obstacleListString)
         {
 
